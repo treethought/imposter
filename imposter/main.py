@@ -47,7 +47,7 @@ def main():
             tweeter.update_status(new_post)
             yakker.compose_yak(new_post, *SLO_COORDS)
             print('posted -- {}'.format(new_post))
-            time.sleep(random.randint(1800, 7200))
+            time.sleep(random.randint(1800, 10800))
         except Exception as e:
             print(e)
 
