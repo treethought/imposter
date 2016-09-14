@@ -1,10 +1,8 @@
+import itertools
 import random
 
-import pytest
-import os
+from imposter.config import *
 from imposter.markov import Imposter
-import itertools
-from config import *
 
 CORPUS = os.path.join(CORPUS_FILES_DIR, 'testing.txt')
 CACHE_FILE = os.path.join(BOTS_DIR, 'testing/cache.json')

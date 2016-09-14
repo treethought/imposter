@@ -1,11 +1,13 @@
-from ast import literal_eval
-import frogress
 import itertools
 import json
 import random
 import shutil
+from ast import literal_eval
+
+import frogress
 
 from config import *
+
 
 class Imposter(object):
 
@@ -76,14 +78,6 @@ class Imposter(object):
                 for word in line.split():
                     self.word_count += 1
                     yield word
-
-    # @property
-    # def raw_states(self):
-    #     w1 = itertools.islice(self.words, 0, None)
-    #     w2 = itertools.islice(self.words, 1, None)
-    #     w3 = itertools.islice(self.words, 2, None)
-    #
-    #     yield from zip(w1, w2, w3)
 
     @property
     def raw_states(self, order=6):
@@ -176,24 +170,6 @@ class Imposter(object):
         seed_idx = random.randint(0, len(self.cache) - 3)
         seed_words = itertools.islice(self.words, seed_idx, seed_idx + 2)
         return(tuple(seed_words))
-
-
-
-    # def generate_text(self, size=140, min=20):
-    #     new_word, next_word = self.select_seed()
-    #     result = []
-    #     for i in range(size):
-    #         result.append(new_word)
-    #         # if new_word[-1] in ['.', '?', '!']:  #TODO: This might not be doing any good. maybe make better states
-    #         #     new_word, next_word = self.select_seed()
-    #         #     continue
-    #         new_word, next_word = next_word, random.choice(self.cache[(new_word, next_word)])
-    #
-    #     result.append(next_word)
-    #     result = ' '.join(result)
-    #
-    #     self.write_result(result)
-    #     return result
 
     def generate_text(self, size=139, min_size=20):  #FOR ENDING WITH END OF SENTENCE
         new_word, next_word = self.select_seed()

@@ -1,7 +1,9 @@
-from bs4 import BeautifulSoup as bs
-import requests
 import timeit
-from config import *
+
+import requests
+from bs4 import BeautifulSoup as bs
+
+from imposter.config import *
 
 
 class CraigScraper(object):
@@ -57,70 +59,7 @@ class CraigScraper(object):
             if soup.select('#userbody > div.removed'):
                 return('')
 
-
-
-
-
-
-    # def get_content(self, post_url):
-    #     """Returns a tuple containing title, body, id"""
-    #     soup = self.get_soup(post_url)
-    #     try:
-    #         title = post_soup.select('#titletextonly')[0].text
-    #         body = post_soup.select('#postingbody')[0].text
-    #         post_info = post_soup.select('p.postinginfo')
-    #         post_id = post_info[1].text.split(': ')[1]
-    #         return post_id, title, body
-    #     except IndexError:
-    #         if post_soup.select('#userbody > div.removed'):
-    #             print('Flagged for removal')
-
-
-
-    # def get_info(self, post_soup):
-    #     """Returns dictionary of attributes, with Post fields as keys"""
-    #     attributes = {}
-    #     try:
-    #         atts = post_soup.select('div.mapAndAttrs')[0]
-    #     except IndexError:
-    #         print('no atts')
-    #     else:
-    #         details = atts.select('p.attrgroup')
-    #         for d in details:
-    #             info = d('span')[0].text.split(': ')
-    #             attribute = info[0]
-    #             value = info[1]
-    #             attributes[attribute] = value
-    #         try:
-    #             gmap = atts.select('p > small > a')[0]
-    #             attributes['gmap'] = gmap
-    #         except IndexError as e:
-    #             print('no map')
-    #
-    #
-    #     post_info = post_soup.select('p.postinginfo')
-    #
-    #     attributes['post_id'] = post_info[1].text.split(': ')[1]
-    #     datetime_split = post_info[2].text.split(' ')
-    #     attributes['date'] = datetime_split[1]
-    #     attributes['time'] = datetime_split[3]
-    #
-    #     return attributes
-
-
-
-
-    # def run(self):
-    #     start = timeit.default_timer()
-    #     for url_set in self.all_post_urls(self.search_url):
-    #         for url in url_set:
-    #             soup = self.get_soup(url)
-    #             post_data = self.get_content(soup)
-    #             (post_data[2])
-    #     end = timeit.default_timer()
-    #     print('method 1 took {} sec'.format(end-start))
-
-    def scrape_post_urls(self):  # works
+    def scrape_post_urls(self):
         start = timeit.default_timer()
 
         urls = self.all_post_urls(self.search_url)
@@ -129,9 +68,6 @@ class CraigScraper(object):
             with open(self.url_file, 'a+') as f:
                 f.write(url + '\n')
 
-            # soup = self.get_soup(url)
-            # post_data = self.get_content(soup)
-            # (post_data[2])
         end = timeit.default_timer()
         print('method 2 took {} sec'.format(end-start))
 

@@ -1,12 +1,12 @@
+#! /usr/bin/env python
 import random
 import time
-from config import *
 import tweepy
+
+import markov
+from config import *
 from yikyakapi.yikyak import YikYak
-
-from imposter import markov
-from imposter.secrets import *
-
+from secrets import *
 
 COUNTRY_CODE = 'USA'
 SLO_COORDS = (35.296256, -120.665499)
