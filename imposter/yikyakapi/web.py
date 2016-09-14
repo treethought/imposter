@@ -2,7 +2,7 @@ import logging
 import requests
 
 from json import dumps as json_dumps
-from json.decoder import JSONDecodeError
+# from json.decoder import JSONDecodeError
 
 
 class WebObject(object):
@@ -46,8 +46,8 @@ class WebObject(object):
 
         try:
             json = response.json()
-        except JSONDecodeError:
-            logging.warning("Failed to decode JSON from response")
+        except Exception as e:    #CHANGE BACK TO JSONDecodeERROR
+            logging.warning("{} - Failed to decode JSON from response".format(e))
             json = {}
 
         logging.debug(json_dumps(json, indent=4))
